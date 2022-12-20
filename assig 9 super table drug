@@ -1,0 +1,56 @@
+package javaop;
+
+public class Tablet extends drug {
+	  private int dosage;
+	  
+	  public Tablet(String name, String manufacturer, double price, int dosage) {
+	    super(name, manufacturer, price);
+	    this.dosage = dosage;
+	  }
+	  
+	  public int getDosage() {
+	    return dosage;
+	  }
+	  public void tablet() {
+		  super.drugs();
+		  
+		  System.out.print(dosage);
+		  
+	  }
+	}
+  
+  
+  package javaop;
+
+public class PainReliever extends Tablet {
+	  private String activeIngredient;
+	  
+	  public PainReliever(String name, String manufacturer, double price, int dosage, String activeIngredient) {
+	    super(name, manufacturer, price, dosage);
+	    this.activeIngredient = activeIngredient;
+	  
+	  }
+	  
+	  public String getActiveIngredient() {
+	    return activeIngredient;
+	  }
+	  public void pain() {
+		  super.tablet();
+		  
+		  System.out.print(activeIngredient);
+		  
+	  }
+	}
+  
+  
+  
+  
+  
+  
+  package javaop;
+
+public class main {
+//(String name, String manufacturer, double price, int dosage, String activeIngredient
+	PainReliever p=new PainReliever("ibrahim","hidech",6.5,6,"lkk");
+	p.pain();
+}
