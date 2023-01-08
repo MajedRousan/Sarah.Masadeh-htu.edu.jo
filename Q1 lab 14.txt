@@ -1,0 +1,57 @@
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+public class FruitFrame extends JFrame {
+  // Create the labels and images
+  private JLabel appleLabel = new JLabel();
+  private BufferedImage appleImage;
+  private JLabel bananaLabel = new JLabel();
+  private BufferedImage bananaImage;
+  private JLabel orangeLabel = new JLabel();
+  private BufferedImage orangeImage;
+  
+  // Constructor
+  public FruitFrame() {
+    // Set the window title
+    setTitle("Fruit Demo");
+    
+    // Set the size of the window
+    setSize(600, 400);
+    
+    // Add a window close event handler
+    addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        System.exit(0);
+      }
+    });
+    
+    // Load the images
+    try {
+      appleImage = ImageIO.read(new File("apple.jpg"));
+      appleLabel.setIcon(new ImageIcon(appleImage));
+      bananaImage = ImageIO.read(new File("banana.jpg"));
+      bananaLabel.setIcon(new ImageIcon(bananaImage));
+      orangeImage = ImageIO.read(new File("orange.jpg"));
+      orangeLabel.setIcon(new ImageIcon(orangeImage));
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    }
+    
+    // Add the labels to the frame
+    add(appleLabel, "West");
+    add(bananaLabel, "Center");
+    add(orangeLabel, "East");
+  }
+  
+  public static void main(String[] args) {
+    // Create a new frame and make it visible
+    JFrame frame = new FruitFrame();
+    frame.setVisible(true);
+  }
+}

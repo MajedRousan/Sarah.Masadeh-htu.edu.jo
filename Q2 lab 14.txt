@@ -1,0 +1,111 @@
+import java.awt.*;
+
+import java.awt.event.ActionEvent;
+
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+ 
+
+ 
+
+ 
+
+public class MainClass {
+
+  public static void main(String[] args) {
+
+    JFrame frame = new JFrame("Word and Character Counter");
+
+    frame.setSize(400, 500);
+
+    frame.setVisible(true);
+
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+ 
+
+ 
+
+ 
+
+    JLabel l1 = new JLabel("Enter some text:");
+
+    l1.setBounds(50, 10, 260, 50);
+
+    Font f = new Font("Times New Roman", Font.BOLD, 24);
+
+    l1.setFont(f);
+
+    frame.add(l1);
+
+ 
+
+ 
+
+ 
+
+    JTextArea textArea = new JTextArea();
+
+    textArea.setBounds(50, 70, 260, 300);
+
+    textArea.setFont(f);
+
+    frame.add(textArea);
+
+ 
+
+ 
+
+ 
+
+    JButton b1 = new JButton("Count Words and Characters");
+
+    b1.setBounds(30, 400, 100, 30);
+
+    frame.add(b1);
+
+ 
+
+ 
+
+ 
+
+    JLabel l2 = new JLabel();
+
+    l2.setBounds(170, 400, 260, 50);
+
+    l2.setFont(f);
+
+    frame.add(l2);
+
+ 
+
+ 
+
+ 
+
+    b1.addActionListener(new ActionListener() {
+
+      @Override
+
+      public void actionPerformed(ActionEvent e) {
+
+        String text = textArea.getText();
+
+        String[] words = text.split("\\s+");
+
+        int wordCount = words.length;
+
+        int charCount = text.length();
+
+        l2.setText("Word count: " + wordCount + ", Character count: " + charCount);
+
+      }
+
+    });
+
+  }
+
+}
