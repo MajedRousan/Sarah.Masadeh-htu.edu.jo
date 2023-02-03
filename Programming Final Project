@@ -1,0 +1,238 @@
+
+import java.util.Scanner;
+import java.lang.Math;   
+
+public class asb 
+{
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		String[] teamsNames = new String[10];
+		int[] teamsIds = new int[10];
+		
+		System.out.println("Welcome to Automated Scoreboard (ASB)");
+		
+		
+		for (int i = 0; i < 10; i++)
+		{
+			
+			System.out.println('\n'+"Enter name for team " +(i+1)+":");
+			teamsNames[i] = sc.nextLine();
+			
+			int check = 0;
+			for (int j = 0; j < 10; j++)
+			{
+				if (i != j)
+				{
+					if (teamsNames[i].equals(teamsNames[j]))
+					{
+						check++;
+					}
+				}
+			}
+			
+			if (check > 0)
+			{
+				System.out.println("Please enter a unique team name.");
+				i--;
+			}
+		}
+			for (int i = 0; i < 10; i++)
+		{
+			
+			System.out.println('\n'+"Enter the ID of team " +(i+1)+":");
+			teamsIds[i] = sc.nextInt();
+			
+			int check = 0;
+			for (int j = 0; j < 10; j++)
+			{
+				if (i != j)
+				{
+					if (teamsIds[i] == teamsIds[j])
+					{
+						check++;
+					}
+				}
+			}
+			
+			if (check > 0)
+			{
+				System.out.println("Please enter a unique team ID.");
+				i--;
+			}
+			
+			System.out.println();
+		}
+		
+		int[][] teamsInfo = new int[10][3];
+		
+		for (int i = 0; i < 10; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				if (j == 0)
+				{
+					teamsInfo[i][j] = teamsIds[i];
+				}
+				else if (j == 1)
+				{
+					int min = 0;  
+					int max = 10;  
+					teamsInfo[i][j] = (int)(Math.random()*(max-min+1)+min);
+				}
+				else
+				{
+					int min = 100;  
+					int max = 300;  
+					teamsInfo[i][j] = (int)(Math.random()*(max-min+1)+min);
+				}
+			}
+		}
+		
+
+		for (int i = 0; i < teamsInfo.length; i++) 
+		{ 
+	         for (int j = 0; j < teamsInfo[i].length; j++) 
+	         { 
+	            System.out.print(teamsInfo[i][j] + " ");
+	         }
+	         System.out.println();
+	    }
+		System.out.println("Before Sorting" +'\n');
+		
+		int temp = 0;
+		int temp1 = 0;
+		int temp2 = 0;
+		
+		for (int i = 0; i < 10; i++) 
+		{     
+			for (int j = i+1; j < 10; j++) 
+			{     
+				if(teamsInfo[i][1] < teamsInfo[j][1]) 
+				{    
+					temp = teamsInfo[i][1]; 
+					teamsInfo[i][1] = teamsInfo[j][1];    
+					teamsInfo[j][1] = temp; 
+	                
+	                temp1 = teamsInfo[i][0];
+	                teamsInfo[i][0] = teamsInfo[j][0];    
+	                teamsInfo[j][0] = temp1;
+	                
+	                temp2 = teamsInfo[i][2];
+	                teamsInfo[i][2] = teamsInfo[j][2];    
+	                teamsInfo[j][2] = temp2;
+	            }
+				
+				else if (teamsInfo[i][1] == teamsInfo[j][1])
+				{
+					int temps = 0;
+					int temps1 = 0;
+					int temps2 = 0;
+					
+			        for (int s = 0; s < 10; s++) 
+			        {     
+			            for (int d = s+1; d < 10; d++)
+			            {     
+			               if(teamsInfo[i][1] == teamsInfo[j][1] && teamsInfo[s][2] > teamsInfo[d][2] && teamsInfo[s][1] == teamsInfo[d][1]) 
+			               {    
+			            	   	temps = teamsInfo[s][1]; 
+			            	   	teamsInfo[s][1] = teamsInfo[d][1];    
+			            	   	teamsInfo[d][1] = temps; 
+				                
+				                temps1 = teamsInfo[s][0];
+				                teamsInfo[s][0] = teamsInfo[d][0];    
+				                teamsInfo[d][0] = temps1;
+				                
+				                temps2 = teamsInfo[s][2];
+				                teamsInfo[s][2] = teamsInfo[d][2];    
+				                teamsInfo[d][2] = temps2;
+				              
+			               }     
+			            }     
+			        }   
+				}   
+			}   
+		}
+		
+		for (int i = 0; i < teamsInfo.length; i++) 
+		{ 
+	         for (int j = 0; j < teamsInfo[i].length; j++) 
+	         { 
+	            System.out.print(teamsInfo[i][j] + " ");
+	         }
+	         System.out.println();
+	    }
+		
+		
+		String[][] idNames = new String[10][2];
+		 for (int i = 0; i < 10; i++)
+		 {
+			 for (int j = 0; j < 2; j++)
+			 {
+				 if (j == 0)
+				 {
+					 idNames[i][j] = Integer.toString(teamsIds[i]);
+				 }
+				 else if (j == 1)
+				 {
+					 idNames[i][j] = teamsNames[i];
+				 }
+			 }
+		 }
+		
+		 for (int i = 0; i < idNames.length; i++) 
+			{ 
+		         for (int j = 0; j < idNames[i].length; j++) 
+		         { 
+		            System.out.print(idNames[i][j] + " ");
+		         }
+		         System.out.println();
+		    }
+		
+		
+		
+		String[][] finals = new String[10][5];
+		String tname = "Try";
+		
+		for (int c = 0; c < 5; c++)
+		{
+			for (int r = 0; r < 10; r++)
+			{
+				
+					finals[r][0] = Integer.toString(r+1);
+					finals[r][1] = Integer.toString(teamsInfo[r][0]);
+					
+					for (int i = 0; i < 10; i++)
+					{
+						for (int j =0; j < 2; j++) 
+						{
+							if(Integer.parseInt(idNames[i][0])== teamsInfo[r][0])
+							{
+								tname = idNames[i][1];
+							}
+						}
+							
+					}
+					
+					finals[r][2] = tname;
+					finals[r][3] = Integer.toString(teamsInfo[r][1]);
+					finals[r][4] = Integer.toString(teamsInfo[r][2]);
+			}
+		
+		
+		
+	}
+	
+		System.out.println("The Final Sorted Table" +'\n'); 
+		for (int i = 0; i < finals.length; i++) 
+			{ 
+		         for (int j = 0; j < finals[i].length; j++) 
+		         { 
+		            System.out.print(finals[i][j] + " ");
+		         }
+		         System.out.println();
+		    }
+		
+}}
