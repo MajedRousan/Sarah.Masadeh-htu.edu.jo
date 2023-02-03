@@ -1,0 +1,108 @@
+
+public class Main {
+    public static void main(String[] args) {
+        Engine sportsEngine = new Engine(435);
+        SportsCar sportsCar = new SportsCar("Ford Mustang", "GT", 2017, sportsEngine);
+        System.out.println("Make: " + sportsCar.getMake());
+        System.out.println("Model: " + sportsCar.getModel());
+        System.out.println("Year: " + sportsCar.getYear());
+        System.out.println("Horsepower: " + sportsCar.getEngine().getHorsepower());
+
+        FamilyCar familyCar = new FamilyCar("Toyota", "Camry", 2020, 5);
+        System.out.println("Make: " + familyCar.getMake());
+        System.out.println("Model: " + familyCar.getModel());
+        System.out.println("Year: " + familyCar.getYear());
+        System.out.println("Seats: " + familyCar.getSeats());
+    }
+}
+
+
+@override 
+//Base Class Car
+class Car {
+ // Encapsulation: private variables and public methods
+ private String make;
+ private String model;
+ private int year;
+
+ public Car(String make, String model, int year) {
+     this.make = make;
+     this.model = model;
+     this.year = year;
+ }
+
+ public String getMake() {
+     return make;
+ }
+
+ public void setMake(String make) {
+     this.make = make;
+ }
+
+ public String getModel() {
+     return model;
+ }
+
+ public void setModel(String model) {
+     this.model = model;
+ }
+
+ public int getYear() {
+     return year;
+ }
+
+ public void setYear(int year) {
+     this.year = year;
+ }
+}
+
+//Composition: Engine Class
+class Engine {
+ private int horsepower;
+
+ public Engine(int horsepower) {
+     this.horsepower = horsepower;
+ }
+
+ public int getHorsepower() {
+     return horsepower;
+ }
+}
+
+@override 
+
+	class SportsCar extends Car {
+		
+	    // Polymorphism: Overriding	
+		
+	    public String getModel() {
+	        return "Sports " + super.getModel();
+	    }
+
+	    private Engine engine;
+
+	    public SportsCar(String make, String model, int year, Engine engine) {
+	        super(make, model, year);
+	        this.engine = engine;
+	    }
+
+	    public Engine getEngine() {
+	        return engine;
+	    }
+	}
+ 
+ @override
+ 
+//Inheritance: FamilyCar Class
+class FamilyCar extends Car {
+ private int seats;
+
+ public FamilyCar(String make, String model, int year, int seats) {
+     super(make, model, year);
+     this.seats = seats;
+ }
+
+ public int getSeats() {
+     return seats;
+ }
+}
